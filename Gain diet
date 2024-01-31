@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract GainDietPlan {
+
+    uint256 public initialBodyWeight;
+    uint256 private currentBodyWeight;
+    uint256 public totalMissedDays;
+
+    function calorieIntake(uint256 _initialWeight, uint256 _dailyCalories) external {
+      
+        assert(_initialWeight > 40);
+
+        require(_dailyCalories > 2000, "You can't gain your body weight to 80kg in 90 days");
+
+        initialBodyWeight = _initialWeight;
+    }
+
+    function missedDays(uint256 _daysMissed) external {
+    
+        if (_daysMissed >= 5) {
+            revert("Additional missed days should be added to diet plan");
+        }
+        totalMissedDays = _daysMissed;
+    }
+}
